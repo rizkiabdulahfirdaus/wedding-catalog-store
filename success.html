@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Wedding Catalog Store</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">💍 Wedding Catalog Store</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="katalog.html">Catalog</a>
+                <a href="cart.html">Cart <span class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="success-container">
+            <div class="success-icon">✅</div>
+            <h1>Order Confirmed!</h1>
+            <p class="success-message">Thank you for your purchase. Your wedding templates are on the way!</p>
+            
+            <div class="order-details">
+                <h2>Order Details</h2>
+                <div id="successOrderInfo"></div>
+                <p class="confirmation-text">
+                    A confirmation message with your templates download link will be sent to your WhatsApp: <strong id="whatsappDisplay"></strong>
+                </p>
+            </div>
+
+            <div class="next-steps">
+                <h2>What's Next?</h2>
+                <ol>
+                    <li>Check your WhatsApp for the download link and templates</li>
+                    <li>Follow the instructions to customize your templates</li>
+                    <li>Print or share your beautiful invitations</li>
+                    <li>Enjoy your special day! 💍</li>
+                </ol>
+            </div>
+
+            <div class="success-actions">
+                <a href="katalog.html" class="btn btn-primary">Browse More Templates</a>
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+
+            <p class="contact-text">
+                Questions? Contact us on WhatsApp: <a href="https://wa.me/15866901926" target="_blank">+1 586 690 1926</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Display order info on success page
+        window.addEventListener('load', function() {
+            const orderData = JSON.parse(localStorage.getItem('lastOrder'));
+            if (orderData) {
+                const infoDiv = document.getElementById('successOrderInfo');
+                const whatsappDisplay = document.getElementById('whatsappDisplay');
+                
+                infoDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${orderData.fullName}</p>
+                    <p><strong>Email:</strong> ${orderData.email}</p>
+                    <p><strong>Phone:</strong> ${orderData.phone}</p>
+                    <p><strong>Total Amount:</strong> ${orderData.total}</p>
+                `;
+                
+                whatsappDisplay.textContent = orderData.phone;
+            }
+        });
+    </script>
+</body>
+</html>
